@@ -1,0 +1,133 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Custom URL Shortener Analytics</title>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" type="text/css" media="screen">
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css" media="screen">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .page_log {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .url_options {
+            background-color: #ffffff;
+            border: 1px solid #17a2b8;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden; /* Prevents content from overflowing */
+        }
+
+        .data_link {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .url {
+            font-size: 18px;
+            color: #007bff;
+            margin-bottom: 10px;
+            overflow: hidden; /* Hides any overflowing content */
+            text-overflow: ellipsis; /* Adds ellipsis for text that overflows */
+            white-space: nowrap; /* Prevents text from wrapping to the next line */
+        }
+
+        .link_element {
+            margin-bottom: 15px;
+        }
+
+        .short_url_1 {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .stats_total {
+            background-color: #17a2b8;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .allClicks {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .hi {
+            color: #17a2b8;
+            font-weight: bold; /* Add font weight here */
+            font-size:45px;
+        }
+    </style>
+</head>
+
+<body class="pace-done lout_stats30">
+    <main id="content" role="main" class="container wyniki wyniki_all">
+        <div class="row"> 
+            <div class="col-12 page_log in mt-0">
+                <h2 class="hi">All Links Analytics</h2>
+            </div>
+
+            {% for obj in rows %}
+                <div class="col-md-6">
+                    <div class="url_options url_stats_o" id="{{ obj.id }}">
+                        <p class="data_link" style="color: #6c757d;">Date: {{ obj.date }}</p>
+                        <p class="url link" style="color: #007bff;">{{ obj.long_url }}</p>
+                        <p id="link" class="link_element">
+                            <a href="/analytics/{{ obj.short_url }}" class="short_url_1" target="_blank" style="color: #28a745;">
+                                {{ obj.short_url }}
+                            </a>
+                        </p> 
+                        <div class="stats_total btn-cutt click stats btn_norm">
+                            <div>Total clicks <strong class="allClicks">{{ obj.clicks }}</strong></div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {%for obj in rows %}
+
+{{obj.long_url}}<br/>
+{{obj.short_url}}<br/>
+{{obj.date}}<br/>
+{{obj.clicks}}<br/><br/>
+
+{% endfor%} {% endcomment %}
